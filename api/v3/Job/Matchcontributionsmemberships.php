@@ -22,7 +22,48 @@ function _civicrm_api3_job_Matchcontributionsmemberships_spec(&$spec) {
  * @see civicrm_api3_create_error
  * @throws API_Exception
  */
+
 function civicrm_api3_job_Matchcontributionsmemberships($params) {
+// Get list of contributions with financial_type = Membership Fee
+    $opencontribution = civicrm_api3('Contribution', 'get', [
+      'sequential' => 1,
+      'return' => ["id", "contact_id", "receive_date", "total_amount"],
+      'financial_type_id' => "Membership Fee",
+      'contribution_status_id' => "Completed",
+      'options' => ['sort' => "receive_date DESC", 'limit' => 4],
+    ]);
+
+// Now search for an entry in civicrm_membership_payment
+foreach ($opencontribution["values"] as $opencontributions) {
+    $membership_payment = civicrm_api3('MembershipPayment', 'get', [
+      'sequential' => 1,
+      'return' => ["membership_id", "id"],
+    ]);
+// entry exists already
+    if $membership_payment[result] > 0 return;
+// entry doesn't exist yet: search for a membership
+    else;
+      $membership = civicrm_api3('Membership', 'getsingle', [
+        'return' => ["id", "end_date", "status_id"],
+        'contact_id' => $opencontribution[contact_id],
+      ]);
+
+      $result = civicrm_api3('MembershipPayment', 'create', [
+        'membership_id' => $membership[id],
+        'contribution_id' => $opencontribution[id],
+      ]);
+
+    endif;
+
+}
+
+
+  
+  
+  
+   
+ /* 
+  
   if (array_key_exists('magicword', $params) && $params['magicword'] == 'sesame') {
     $returnValues = array(
       // OK, return several data rows
@@ -40,3 +81,5 @@ function civicrm_api3_job_Matchcontributionsmemberships($params) {
     throw new API_Exception(/*errorMessage*/ 'Everyone knows that the magicword is "sesame"', /*errorCode*/ 1234);
   }
 }
+*/
+  
