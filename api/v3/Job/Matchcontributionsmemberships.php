@@ -2,18 +2,6 @@
 use CRM_Matchcontributionsmemberships_ExtensionUtil as E;
 
 /**
- * Job.Matchcontributionsmemberships API specification (optional)
- * This is used for documentation and validation.
- *
- * @param array $spec description of fields supported by this API call
- * @return void
- * @see https://docs.civicrm.org/dev/en/latest/framework/api-architecture/
- */
-function _civicrm_api3_job_Matchcontributionsmemberships_spec(&$spec) {
-  $spec['magicword']['api.required'] = 1;
-}
-
-/**
  * Job.Matchcontributionsmemberships API
  *
  * @param array $params
