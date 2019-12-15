@@ -34,7 +34,7 @@ function civicrm_api3_job_Matchcontributionsmemberships($params) {
     ]);
 
 // Now search for an entry in civicrm_membership_payment
-foreach ($opencontribution["values"] as $opencontributions) {
+  foreach ($opencontribution["values"] as $opencontributions) {
     $membership_payment = civicrm_api3('MembershipPayment', 'get', [
       'sequential' => 1,
       'return' => ["membership_id", "id"],
@@ -54,5 +54,5 @@ foreach ($opencontribution["values"] as $opencontributions) {
         'contribution_id' => $opencontribution[id],
       ]);
     }
+  }
 }
-
