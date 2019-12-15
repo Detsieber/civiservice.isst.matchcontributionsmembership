@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <extension key="civiservice.isst.matchcontributionsmemberships" type="module">
   <file>matchcontributionsmemberships</file>
-  <name>FIXME</name>
-  <description>FIXME</description>
+  <name>Match contributions to memberships</name>
+  <description>This extension looks for contributions of type "Membership Fee" and connects them to the latest membership for the re
+spective contact</description>
   <license>AGPL-3.0</license>
   <maintainer>
-    <author>FIXME</author>
-    <email>FIXME</email>
+    <author>Detlev Sieber</author>
+    <email>etlev.sieber@civiservice.de</email>
   </maintainer>
   <urls>
     <url desc="Main Extension Page">http://FIXME</url>
@@ -16,11 +17,11 @@
   </urls>
   <releaseDate>2019-12-15</releaseDate>
   <version>1.0</version>
-  <develStage>alpha</develStage>
+  <develStage>beta</develStage>
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
-  <comments>This is a new, undeveloped module</comments>
+  <comments>This is custom module for ISST</comments>
   <civix>
     <namespace>CRM/Matchcontributionsmemberships</namespace>
   </civix>
