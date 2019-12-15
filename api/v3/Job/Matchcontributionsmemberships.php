@@ -40,7 +40,7 @@ foreach ($opencontribution["values"] as $opencontributions) {
       'return' => ["membership_id", "id"],
     ]);
 // entry exists already
-    if $membership_payment[result] > 0 return;
+    if $membership_payment[count] > 0 return;
 // entry doesn't exist yet: search for a membership
     else;
       $membership = civicrm_api3('Membership', 'getsingle', [
