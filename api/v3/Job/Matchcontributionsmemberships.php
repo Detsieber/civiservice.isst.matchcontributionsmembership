@@ -18,7 +18,7 @@ function civicrm_api3_job_Matchcontributionsmemberships($params) {
       'return' => ["id", "contact_id", "receive_date", "total_amount"],
       'financial_type_id' => "Membership Fee",
       'contribution_status_id' => "Completed",
-      'options' => ['sort' => "receive_date DESC", 'limit' => 4],
+      'options' => ['sort' => "receive_date DESC", 'limit' => 10],
     ]);
 
 // Now search for an entry in civicrm_membership_payment
