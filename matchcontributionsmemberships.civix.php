@@ -6,10 +6,10 @@
  * The ExtensionUtil class provides small stubs for accessing resources of this
  * extension.
  */
-class CRM_Matchcontributionsmemberships_ExtensionUtil {
+class CRM_Contribution_ExtensionUtil {
   const SHORT_NAME = "matchcontributionsmemberships";
   const LONG_NAME = "civiservice.isst.matchcontributionsmemberships";
-  const CLASS_PREFIX = "CRM_Matchcontributionsmemberships";
+  const CLASS_PREFIX = "CRM_Contribution";
 
   /**
    * Translate a string using the extension's domain.
@@ -77,7 +77,7 @@ class CRM_Matchcontributionsmemberships_ExtensionUtil {
 
 }
 
-use CRM_Matchcontributionsmemberships_ExtensionUtil as E;
+use CRM_Contribution_ExtensionUtil as E;
 
 /**
  * (Delegated) Implements hook_civicrm_config().
@@ -205,14 +205,14 @@ function _matchcontributionsmemberships_civix_civicrm_upgrade($op, CRM_Queue_Que
 }
 
 /**
- * @return CRM_Matchcontributionsmemberships_Upgrader
+ * @return CRM_Contribution_Upgrader
  */
 function _matchcontributionsmemberships_civix_upgrader() {
-  if (!file_exists(__DIR__ . '/CRM/Matchcontributionsmemberships/Upgrader.php')) {
+  if (!file_exists(__DIR__ . '/CRM/Contribution/Upgrader.php')) {
     return NULL;
   }
   else {
-    return CRM_Matchcontributionsmemberships_Upgrader_Base::instance();
+    return CRM_Contribution_Upgrader_Base::instance();
   }
 }
 
