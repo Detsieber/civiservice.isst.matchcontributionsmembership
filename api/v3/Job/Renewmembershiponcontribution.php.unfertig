@@ -1,0 +1,76 @@
+<?php
+use CRM_Contribution_ExtensionUtil as E;
+
+/**
+ * Job.Renewmembershiponcontribution API specification (optional)
+ * This is used for documentation and validation.
+ *
+ * @param array $spec description of fields supported by this API call
+ * @return void
+ * @see https://docs.civicrm.org/dev/en/latest/framework/api-architecture/
+ */
+//function _civicrm_api3_job_Renewmembershiponcontribution_spec(&$spec) {
+//  $spec['magicword']['api.required'] = 1;
+//}
+
+/**
+ * Job.Renewmembershiponcontribution API
+ *
+ * @param array $params
+ * @return array API result descriptor
+ * @see civicrm_api3_create_success
+ * @see civicrm_api3_create_error
+ * @throws API_Exception
+ */
+function civicrm_api3_job_Renewmembershiponcontribution($params) {
+
+// Get list of memberships with payments after 2019-06-01
+    $membership_renewal = civicrm_api3('MembershipPayment', 'get', [
+      'sequential' => 1,
+      'return' => ["membership_id", "id", "contribution_id.receive_date"],
+      'membership_id' => 1400,
+//      'contribution_id.receive_date' => ['>=' => "-2 months"],
+      'options' => ['limit' => 2000],
+    ]);
+
+// Check membership_end_date and membership_status
+  foreach ($membership_renewal["values"] as $membership_renewals) {
+    $membership_detail = civicrm_api3('Membership', 'getsingle', [
+      'return' => ["id", "end_date", "status_id", "is_override"],
+      'id' => $membership_renewals[membership_id],
+    ]);
+
+var_dump($membership_renewals[contribution_id.receive_date]);
+exit;
+
+// set status and new end_date via api
+    if ($membership_detail[is_override]!=1) {
+// update membership and status only if contribution.receive_date is
+// within a reasonable timeframe
+      $membership_end_date = strtotime(date('Y-m-d', strtotime($membership_detail[end_date])));
+      $reasonable_payment_date = strtotime(date('Y-m-d', strtotime('-2 months', 
+                strtotime($membership_renewals[contribution_id.receive_date]))));
+
+
+      if ($membership_end_date - $reasonable_payment_date > 0) {
+
+$ergebnis="ja";
+var_dump($membership_end_date);
+var_dump($reasonable_payment_date);
+var_dump($ergebnis);
+var_dump($membership_renewals[contribution_id.receive_date]);
+exit;
+
+
+         $end_date=date('Y-m-d', strtotime('+1 year', strtotime($membership_detail[end_date])));
+         $status_id = 1;
+   
+         $result = civicrm_api3('Membership', 'create', [
+          'id' => $membership_detail[id],
+          'end_date' => $end_date,
+          'status_id' => $status_id,
+         ]);
+      }
+    }   
+  }
+}

@@ -1,5 +1,6 @@
 <?php
-use CRM_Matchcontributionsmemberships_ExtensionUtil as E;
+use CRM_Contribution_ExtensionUtil as E;
+
 
 /**
  * Job.Matchcontributionsmemberships API
