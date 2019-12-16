@@ -1,0 +1,41 @@
+<?php
+use CRM_Matchcontributionsmemberships_ExtensionUtil as E;
+
+/**
+ * Job.Renewmembershiponcontribution API
+ *
+ * @param array $params
+ * @return array API result descriptor
+ * @see civicrm_api3_create_success
+ * @see civicrm_api3_create_error
+ * @throws API_Exception
+ */
+
+function civicrm_api3_job_Renewmembershiponcontribution($params) {
+
+// Get list of memberships with payments after 2019-06-01
+    $membership_renewal = civicrm_api3('MembershipPayment', 'get', [
+      'sequential' => 1,
+      'return' => ["membership_id, id"],
+      'contribution_id.receive_date' => ['>=' => "2019-06-01"],
+]);
+
+// Check membership_end_date and membership_status
+    $membership = civicrm_api3('Membership', 'getsingle', [
+      'id' => 1400, //$membership_renewal[membership_id]
+    ]);
+
+var_dump $membership;
+exit;
+
+
+    $membership[end_date] == "2020-".date("m-d";$membership[end_date]);
+
+
+var_dump $membership;
+exit;
+
+// set status and new end_date via api
+
+}
+

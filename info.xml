@@ -3,7 +3,7 @@
   <file>matchcontributionsmemberships</file>
   <name>Match contributions to memberships</name>
   <description>This extension looks for contributions of type "Membership Fee" and connects them to the latest membership for the re
-spective contact</description>
+spective contact. Also, it updates the end date and status of the membership, thus performing an automated renewal.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Detlev Sieber</author>
@@ -21,8 +21,8 @@ spective contact</description>
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
-  <comments>This is custom module for ISST</comments>
+  <comments>This is a custom module for ISST</comments>
   <civix>
-    <namespace>CRM/Matchcontributionsmemberships</namespace>
+    <namespace>CRM/Contribution</namespace>
   </civix>
 </extension>
