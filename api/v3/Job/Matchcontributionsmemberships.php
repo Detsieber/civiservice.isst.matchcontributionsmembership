@@ -29,11 +29,11 @@ function civicrm_api3_job_Matchcontributionsmemberships($params) {
     $membership_payment = civicrm_api3('MembershipPayment', 'get', [
       'sequential' => 1,
       'return' => ["membership_id", "id"],
-      'contribution_id' => $opencontributions[id],
+      'contribution_id' => $opencontributions["id"],
     ]);
 
 // entry exists already
-    if ($membership_payment[count] > 0) {
+    if ($membership_payment["count"] > 0) {
     }
 
 
