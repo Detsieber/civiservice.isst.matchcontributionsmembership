@@ -42,18 +42,18 @@ function civicrm_api3_job_Matchcontributionsmemberships($params) {
       $membership = civicrm_api3('Membership', 'get', [
         'return' => ["id", "end_date", "status_id"],
         'sequential' => 1,
-        'contact_id' => $opencontributions[contact_id],
+        'contact_id' => $opencontributions['contact_id'],
         'options' => ['sort' => "id DESC", 'limit' => 1],
       ]);
 
 // skip contributions without any membership entry
 // todo: create membership in these cases
-      if ($membership[count] > 0) {
+      if ($membership['count'] > 0) {
    
 
       $result = civicrm_api3('MembershipPayment', 'create', [
-        'membership_id' => $membership[id],
-        'contribution_id' => $opencontributions[id],
+        'membership_id' => $membership['id'],
+        'contribution_id' => $opencontributions['id'],
       ]);
       }
     }
